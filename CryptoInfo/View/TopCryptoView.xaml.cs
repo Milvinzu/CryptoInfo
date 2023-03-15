@@ -10,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CryptoInfo.Model;
-using Microsoft.Windows.Themes;
-using Newtonsoft.Json;
 
-namespace CryptoInfo
+namespace CryptoInfo.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для TopCryptoView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TopCryptoView : UserControl
     {
-        public MainWindow()
+        public TopCryptoView()
         {
             InitializeComponent();
         }
-
     }
 }

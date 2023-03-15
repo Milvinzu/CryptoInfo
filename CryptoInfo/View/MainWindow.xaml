@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoInfo"
+        xmlns:viewModel="clr-namespace:CryptoInfo.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Height="450" Width="700" Background="#FFEAEBEC"
+        Title="CryptoInfo" WindowStartupLocation="CenterScreen">
 
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <RadioButton Content="Top Crypto"
+                         Height="50px"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"/>
+        </StackPanel>
+
+        <ContentControl Grid.Column="1"
+                        Margin="10"
+                        Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
