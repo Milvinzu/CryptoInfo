@@ -24,7 +24,14 @@
             <RadioButton Content="Top Crypto"
                          Height="50px"
                          FontSize="14"
-                         Style="{StaticResource MenuButtonTheme}"/>
+                         Style="{StaticResource MenuButtonTheme}"
+                         IsChecked="True"
+                         Command="{Binding TopCryptoViewCommand}"/>
+            <RadioButton Content="All Coins"
+                         Height="50px"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding AllCoinsViewCommand}"/>
         </StackPanel>
 
         <ContentControl Grid.Column="1"

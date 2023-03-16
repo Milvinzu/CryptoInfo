@@ -9,30 +9,56 @@ namespace CryptoInfo.Model
 {
     class CoinInfo
     {
-        public string name { get; set; }
-        public string symbol { get; set; }
-        public string price { get; set; }
-        public string volume { get; set; }
-        public string priceChangePrecent { get; set; }
-        public string marketsAndPrice { get; set; }
-
-        public async Task<List<CoinInfo>> GetCoinList(int limit)
+        public async Task<List<Currency>> GetCoinList(int limit)
         {
-            List<CoinInfo> coinList = new List<CoinInfo>();
-            CoinCapAPI coinCapAPI = new CoinCapAPI();
-            string strJson = await coinCapAPI.GetCryptocurrenciesList(limit);
-            dynamic coin = JsonConvert.DeserializeObject<dynamic>(strJson);
+            List<Currency> coinList = new List<Currency>();
+            List<Market> marketass = new List<Market>();
 
-            for (int i = 0; i < limit; i++)
+            CoinCapAPI coinCapAPI = new CoinCapAPI();
+
+            string coinJson = await coinCapAPI.GetCryptocurrenciesList(limit);
+            dynamic currencies = JsonConvert.DeserializeObject<dynamic>(coinJson);
+
+            foreach (var currency in currencies.data)
             {
-                coinList.Add(new CoinInfo
+                List<Market> currencyMarkets = new List<Market>();
+
+                string marketJson = await coinCapAPI.GetMarketsList((currency.id).ToString());
+                dynamic markets = JsonConvert.DeserializeObject(marketJson);
+
+
+                List<Task> tasks = new List<Task>();
+                foreach (dynamic market in markets.data)
                 {
-                    name = coin.data[i].name,
-                    symbol = coin.data[i].symbol,
-                    price = coin.data[i].priceUsd,
-                    volume = coin.data[i].volumeUsd24Hr,
-                    priceChangePrecent = coin.data[i].changePercent24Hr
-                });
+                    tasks.Add(Task.Run(async () =>
+                    {
+
+                        currencyMarkets.Add(new Market
+                        {
+                            ExchangeId = market.exchangeId,
+                            BaseSymbol = market.baseSymbol,
+                            QuoteSymbol = market.quoteSymbol,
+                            PriceUsd = Convert.ToDecimal(market.PriceUsd),
+                            VolumeUsd24Hr = Convert.ToDecimal(market.volumeUsd24Hr)
+                        });
+                    }));
+                }
+                await Task.WhenAll(tasks);
+
+
+                var uniqueMarkets = currencyMarkets.Select(m => m.ExchangeId).Distinct().OrderBy(m => m);
+
+                var coin = new Currency
+                {
+                    Name = currency.name,
+                    Symbol = currency.symbol,
+                    PriceUsd = currency.priceUsd,
+                    VolumeUsd24Hr = currency.volumeUsd24Hr,
+                    ChangePercent24Hr = currency.changePercent24Hr,
+                    Market = string.Join(", ", uniqueMarkets)
+                };
+
+                coinList.Add(coin);
             }
 
             return coinList;

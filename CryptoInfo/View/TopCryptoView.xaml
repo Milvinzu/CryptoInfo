@@ -6,13 +6,23 @@
              xmlns:local="clr-namespace:CryptoInfo.View"
              xmlns:viewModel="clr-namespace:CryptoInfo.ViewModel"
              xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+             x:ClassModifier="public"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
-        <viewModel:CoinInfoViewModel/>
+        <viewModel:TopCryptoViewModel/>
     </UserControl.DataContext>
 
-    <DataGrid ItemsSource="{Binding Coins}">
-       
+    <DataGrid ItemsSource="{Binding Coins}"
+              AutoGenerateColumns="False">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+            <DataGridTextColumn Header="Symbol" Binding="{Binding Symbol}"/>
+            <DataGridTextColumn Header="Price (USD)" Binding="{Binding PriceUsd}"/>
+            <DataGridTextColumn Header="24 Hour Volume (USD)" Binding="{Binding VolumeUsd24Hr}"/>
+            <DataGridTextColumn Header="24 Hour Change (%)" Binding="{Binding ChangePercent24Hr}"/>
+            <DataGridTextColumn Header="Markets" Binding="{Binding Market}"/>
+        </DataGrid.Columns>
     </DataGrid>
+
 </UserControl>

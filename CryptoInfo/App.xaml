@@ -12,8 +12,12 @@
                 <ResourceDictionary Source="Theme/MenuButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate DataType="{x:Type viewModel:TopCrypto}">
+            <DataTemplate DataType="{x:Type viewModel:TopCryptoViewModel}">
                 <view:TopCryptoView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AllCoinsViewModel}">
+                <view:AllCoinsView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

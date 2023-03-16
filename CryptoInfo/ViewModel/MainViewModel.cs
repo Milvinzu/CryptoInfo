@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoInfo.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,11 @@ namespace CryptoInfo.ViewModel
     class MainViewModel : ObservableObject
     {
         public RelayCommand TopCryptoViewCommand { get; set; }
+        public RelayCommand AllCoinsViewCommand { get; set; }
 
-        public TopCrypto topCrypto { get; set; }
+        public TopCryptoViewModel TopCryptoVM { get; set; }
+        public AllCoinsViewModel AllCoinsVM { get; set; }
+        
 
         private object _currentView;
 
@@ -28,14 +32,20 @@ namespace CryptoInfo.ViewModel
 
         public MainViewModel() 
         {
-            topCrypto = new TopCrypto();
+            TopCryptoVM = new TopCryptoViewModel();
+            AllCoinsVM = new AllCoinsViewModel();
 
-            CurrentView = topCrypto;
-            CoinInfoViewModel viewModel = new CoinInfoViewModel();
+            CurrentView = TopCryptoVM;
+            TopCryptoViewModel viewModel = new TopCryptoViewModel();
 
             TopCryptoViewCommand = new RelayCommand(o =>
             {
-                CurrentView = topCrypto;
+                CurrentView = TopCryptoVM;
+            });
+
+            AllCoinsViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = AllCoinsVM;
             });
         }
     }
