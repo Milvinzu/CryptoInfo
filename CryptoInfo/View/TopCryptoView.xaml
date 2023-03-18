@@ -6,23 +6,33 @@
              xmlns:local="clr-namespace:CryptoInfo.View"
              xmlns:viewModel="clr-namespace:CryptoInfo.ViewModel"
              xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
-             x:ClassModifier="public"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <viewModel:TopCryptoViewModel/>
     </UserControl.DataContext>
 
-    <DataGrid ItemsSource="{Binding Coins}"
-              AutoGenerateColumns="False">
-        <DataGrid.Columns>
-            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-            <DataGridTextColumn Header="Symbol" Binding="{Binding Symbol}"/>
-            <DataGridTextColumn Header="Price (USD)" Binding="{Binding PriceUsd}"/>
-            <DataGridTextColumn Header="24 Hour Volume (USD)" Binding="{Binding VolumeUsd24Hr}"/>
-            <DataGridTextColumn Header="24 Hour Change (%)" Binding="{Binding ChangePercent24Hr}"/>
-            <DataGridTextColumn Header="Markets" Binding="{Binding Market}"/>
-        </DataGrid.Columns>
-    </DataGrid>
+
+    <Grid>
+
+        <ItemsControl ItemsSource="{Binding Coins}"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0 20 0 0"
+                                Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="&#x200A;&#x200A;" />
+                        <TextBlock Text="{Binding PriceUsd}"/>
+                        <TextBlock Text="&#x200A;&#x200A; USD" />
+                        <TextBlock Text="{Binding ChangePercent24Hr}"/>
+                        <TextBlock Text="&#x200A;&#x200A; %" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </Grid>
 
 </UserControl>

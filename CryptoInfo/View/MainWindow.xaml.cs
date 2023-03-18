@@ -14,6 +14,7 @@ using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CryptoInfo.Model;
+using CryptoInfo.ViewModel;
 using Microsoft.Windows.Themes;
 using Newtonsoft.Json;
 
@@ -24,10 +25,11 @@ namespace CryptoInfo
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-        }
+        }  
 
     }
 }

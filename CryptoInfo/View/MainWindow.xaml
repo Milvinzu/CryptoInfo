@@ -26,16 +26,18 @@
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          IsChecked="True"
-                         Command="{Binding TopCryptoViewCommand}"/>
-            <RadioButton Content="All Coins"
+                         Command="{Binding TopCryptoViewCommand}"
+                         Name="HomeRadioBtn"/>
+            <RadioButton Content="More Info"
                          Height="50px"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding AllCoinsViewCommand}"/>
+                         Command="{Binding SearchViewCommand}"/>
         </StackPanel>
 
         <ContentControl Grid.Column="1"
                         Margin="10"
-                        Content="{Binding CurrentView}"/>
+                        Content="{Binding CurrentView}"
+                        x:Name="ContentControl"/>
     </Grid>
 </Window>

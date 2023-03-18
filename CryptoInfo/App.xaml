@@ -16,9 +16,10 @@
                 <view:TopCryptoView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:AllCoinsViewModel}">
-                <view:AllCoinsView/>
+            <DataTemplate DataType="{x:Type viewModel:SearchViewModel}">
+                <view:SearchView/>
             </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
        

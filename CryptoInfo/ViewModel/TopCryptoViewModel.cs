@@ -20,7 +20,7 @@ namespace CryptoInfo.ViewModel
         private async void LoadCoins()
         {
             CoinInfo coinInfo = new CoinInfo();
-            List<Currency> coins = await coinInfo.GetCoinList(10);
+            List<Currency> coins = await coinInfo.GetTopTen();
             Coins = new ObservableCollection<Currency>(coins);
         }
 

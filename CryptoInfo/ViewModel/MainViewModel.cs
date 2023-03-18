@@ -1,19 +1,21 @@
-﻿using CryptoInfo.View;
+﻿using CryptoInfo.Model;
+using CryptoInfo.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CryptoInfo.ViewModel
 {
     class MainViewModel : ObservableObject
     {
         public RelayCommand TopCryptoViewCommand { get; set; }
-        public RelayCommand AllCoinsViewCommand { get; set; }
+        public RelayCommand SearchViewCommand { get; set; }
 
         public TopCryptoViewModel TopCryptoVM { get; set; }
-        public AllCoinsViewModel AllCoinsVM { get; set; }
+        public SearchViewModel SearchlVM { get; set; }
         
 
         private object _currentView;
@@ -28,12 +30,12 @@ namespace CryptoInfo.ViewModel
             }
         }
 
-
+        
 
         public MainViewModel() 
         {
             TopCryptoVM = new TopCryptoViewModel();
-            AllCoinsVM = new AllCoinsViewModel();
+            SearchlVM = new SearchViewModel();
 
             CurrentView = TopCryptoVM;
             TopCryptoViewModel viewModel = new TopCryptoViewModel();
@@ -43,9 +45,9 @@ namespace CryptoInfo.ViewModel
                 CurrentView = TopCryptoVM;
             });
 
-            AllCoinsViewCommand = new RelayCommand(o =>
+            SearchViewCommand= new RelayCommand(o =>
             {
-                CurrentView = AllCoinsVM;
+                CurrentView = SearchlVM;
             });
         }
     }

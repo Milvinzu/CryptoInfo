@@ -1,5 +1,4 @@
-﻿using CryptoInfo.Model;
-using CryptoInfo.ViewModel;
+﻿using CryptoInfo.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +17,23 @@ using System.Windows.Shapes;
 namespace CryptoInfo.View
 {
     /// <summary>
-    /// Логика взаимодействия для TopCryptoView.xaml
+    /// Логика взаимодействия для SearchView.xaml
     /// </summary>
-    public partial class TopCryptoView : UserControl
+    public partial class SearchView : UserControl
     {
-        public TopCryptoView()
+        public SearchView()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var textBox = (TextBox)sender;
+                var viewModel = (SearchViewModel)DataContext;
+                viewModel.SetText(textBox.Text);
+            }
         }
     }
 }
