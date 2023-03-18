@@ -18,10 +18,10 @@ namespace CryptoInfo.Model
         private readonly HttpClient _client;
         private readonly string _apiKey;
         private readonly string _baseUrl;
-
+        //B:\repos\CryptoInfo\CryptoInfo
         public CoinCapAPI()
         {
-            string[] lines = File.ReadAllLines("../../../configuration.txt");
+            string[] lines = File.ReadAllLines("B:/repos/CryptoInfo/CryptoInfo/configuration.txt");
 
             foreach (string line in lines)
             {
@@ -82,6 +82,29 @@ namespace CryptoInfo.Model
                 var request = CreateRequest($"{_baseUrl}/assets?search={coinId}");
                 var response = await _client.SendAsync(request);
                 return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<List<Task<string>>> GetReteForConvert(string FirstId, string SecondId)
+        {
+            try
+            {
+                List<Task<string>> result = new List<Task<string>>();
+                var FirstRequest = CreateRequest($"{_baseUrl}/assets/{FirstId}");
+                var SecondRequest = CreateRequest($"{_baseUrl}/assets/{SecondId}");
+
+                var FirstResponse = await _client.SendAsync(FirstRequest);
+                var SecondResponse = await _client.SendAsync(SecondRequest);
+
+                result.Add(FirstResponse.Content.ReadAsStringAsync());
+                result.Add(SecondResponse.Content.ReadAsStringAsync());
+
+                return result;
             }
             catch (Exception ex)
             {

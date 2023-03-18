@@ -20,6 +20,10 @@
                 <view:SearchView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:ConvertCurrencyViewModel}">
+                <view:ConvertCurrencyView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
        

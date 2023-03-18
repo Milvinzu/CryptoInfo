@@ -33,6 +33,11 @@
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Command="{Binding SearchViewCommand}"/>
+            <RadioButton Content="Convert Currency"
+                         Height="50px"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding ConvertCurrencyViewCommand}"/>
         </StackPanel>
 
         <ContentControl Grid.Column="1"

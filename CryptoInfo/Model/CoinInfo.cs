@@ -125,6 +125,7 @@ namespace CryptoInfo.Model
 
                     var coin = new Currency
                     {
+                        Id = coinId,
                         Name = currencies.name,
                         Symbol = currencies.symbol,
                         PriceUsd = (decimal?)currencies.priceUsd ?? 0,
@@ -138,6 +139,31 @@ namespace CryptoInfo.Model
                     };
                     coinList.Add(coin);
                 }
+            }
+            return coinList;
+        }
+
+        public async Task<List<Currency>> SearchName(string coinId)
+        {
+            if (string.IsNullOrEmpty(coinId)) return null;
+
+            List<Currency> coinList = new List<Currency>();
+
+            string coinJson = await _coinCapAPI.SearchCryptocurrency(coinId);
+            dynamic currency = JsonConvert.DeserializeObject<dynamic>(coinJson);
+
+
+            foreach (var currencies in currency.data)
+            {
+
+                
+                    var coin = new Currency
+                    {
+                        Id = currencies.id,
+                        Name = currencies.name
+                    };
+                    coinList.Add(coin);
+                
             }
             return coinList;
         }
