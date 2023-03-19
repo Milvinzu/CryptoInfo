@@ -18,7 +18,7 @@ namespace CryptoInfo.Model
         private readonly HttpClient _client;
         private readonly string _apiKey;
         private readonly string _baseUrl;
-        //B:\repos\CryptoInfo\CryptoInfo
+
         public CoinCapAPI()
         {
             string[] lines = File.ReadAllLines("B:/repos/CryptoInfo/CryptoInfo/configuration.txt");
@@ -112,5 +112,22 @@ namespace CryptoInfo.Model
                 return null;
             }
         }
+
+        public async Task<string> Getcandles(string exchangeId, string interval, string coinId)
+        {
+            try
+            {
+                var request = CreateRequest($"https://api.coincap.io/v2/candles?exchange=poloniex&interval=h8&baseId=ethereum&quoteId=bitcoin");
+                var response = await _client.SendAsync(request);
+                var s = await response.Content.ReadAsStringAsync(); 
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return null;
+            }
+        }
+
     }
 }

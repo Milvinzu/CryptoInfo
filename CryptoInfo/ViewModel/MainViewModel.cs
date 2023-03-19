@@ -14,10 +14,12 @@ namespace CryptoInfo.ViewModel
         public RelayCommand TopCryptoViewCommand { get; set; }
         public RelayCommand SearchViewCommand { get; set; }
         public RelayCommand ConvertCurrencyViewCommand { get; set; }
+        public RelayCommand JapaneseСandlestickСhartViewCommand { get; set; }
 
         public TopCryptoViewModel TopCryptoVM { get; set; }
         public SearchViewModel SearchlVM { get; set; }
         public ConvertCurrencyViewModel ConvertCurrencyVM { get; set; }
+        public JapaneseСandlestickСhartViewModel JapaneseСandlestickСhartVM { get; set; }
         
 
         private object _currentView;
@@ -39,6 +41,7 @@ namespace CryptoInfo.ViewModel
             TopCryptoVM = new TopCryptoViewModel();
             SearchlVM = new SearchViewModel();
             ConvertCurrencyVM = new ConvertCurrencyViewModel();
+            JapaneseСandlestickСhartVM = new JapaneseСandlestickСhartViewModel();
 
             CurrentView = TopCryptoVM;
             TopCryptoViewModel viewModel = new TopCryptoViewModel();
@@ -56,6 +59,11 @@ namespace CryptoInfo.ViewModel
             ConvertCurrencyViewCommand = new RelayCommand(o =>
             {
                 CurrentView = ConvertCurrencyVM;
+            });
+
+            JapaneseСandlestickСhartViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = JapaneseСandlestickСhartVM;
             });
         }
     }

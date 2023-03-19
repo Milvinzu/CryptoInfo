@@ -24,6 +24,10 @@
                 <view:ConvertCurrencyView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:JapaneseСandlestickСhartViewModel}">
+                <view:JapaneseСandlestickСhartView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
        

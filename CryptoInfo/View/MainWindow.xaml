@@ -38,6 +38,11 @@
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Command="{Binding ConvertCurrencyViewCommand}"/>
+            <RadioButton Content="Candles"
+                         Height="50px"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding JapaneseСandlestickСhartViewCommand}"/>
         </StackPanel>
 
         <ContentControl Grid.Column="1"
