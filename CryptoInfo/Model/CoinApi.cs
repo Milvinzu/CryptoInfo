@@ -2,16 +2,17 @@
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CryptoInfo.Model
 {
     internal class CoinApi
     {
         
-        private string _apiKey = "99DD3637-2658-4508-8F5A-86B577C55BC4";
-        private string _baseUrl = "https://rest.coinapi.io/v1";
+        private readonly string _apiKey = "8A7E6233-0CC5-4589-BB18-9CC2941E94C7";
+        private readonly string _baseUrl = "https://rest.coinapi.io/v1";
 
-        public async Task<string> GetCryptocurrenciesList(string symbolId, string periodId, int limit)
+        public async Task<string> GetCandleList(string symbolId, string periodId, int limit)
         {
             try
             {
@@ -27,7 +28,7 @@ namespace CryptoInfo.Model
                 }
                 return responseJson;
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;

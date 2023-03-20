@@ -17,6 +17,8 @@
                 <ResourceDictionary Source="Style/ComboBox.xaml"/>
                 <ResourceDictionary Source="Style/Button.xaml"/>
                 <ResourceDictionary Source="Style/ToggleButton.xaml"/>
+
+                <ResourceDictionary Source="Resources/en-US.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:TopCryptoViewModel}">

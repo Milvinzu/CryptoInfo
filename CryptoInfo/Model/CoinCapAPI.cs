@@ -3,39 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using Newtonsoft.Json;
-using System.Net;
-using System.Configuration;
-using System.IO;
 
 namespace CryptoInfo.Model
 {
-    internal class CoinCapAPI
+    internal class CoinCapApi
     {
-        private readonly HttpClient _client;
-        private readonly string _apiKey;
-        private readonly string _baseUrl;
+        private readonly HttpClient _httpClient = new HttpClient();
+        private readonly string _apiKey = "874be4d0-2fad-4bc8-8aa9-64bdb34ff012";
+        private readonly string _baseUrl = "https://api.coincap.io/v2";
 
-        public CoinCapAPI()
-        {
-            string[] lines = File.ReadAllLines("B:/repos/CryptoInfo/CryptoInfo/configuration.txt");
-
-            foreach (string line in lines)
-            {
-                if (line.StartsWith("APIKey:"))
-                {
-                    _apiKey = line.Substring(8).Trim();
-                }
-                else if (line.StartsWith("BaseUrl:"))
-                {
-                    _baseUrl = line.Substring(9).Trim();
-                }
-            }
-            _client = new HttpClient();
-        }
 
         private HttpRequestMessage CreateRequest(string url)
         {
@@ -49,7 +26,7 @@ namespace CryptoInfo.Model
             try
             {
                 var request = CreateRequest($"{_baseUrl}/assets?limit={limit}");
-                var response = await _client.SendAsync(request);
+                var response = await _httpClient.SendAsync(request);
                 return await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
@@ -64,7 +41,7 @@ namespace CryptoInfo.Model
             try
             {
                 var request = CreateRequest($"{_baseUrl}/assets/{coinId}/markets");
-                var response = await _client.SendAsync(request);
+                var response = await _httpClient.SendAsync(request);
                 return await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
@@ -76,11 +53,11 @@ namespace CryptoInfo.Model
 
         public async Task<string> SearchCryptocurrency(string coinId)
         {
-            if (coinId == null) return null;
+            if (string.IsNullOrEmpty(coinId)) return null;
             try
             {
                 var request = CreateRequest($"{_baseUrl}/assets?search={coinId}");
-                var response = await _client.SendAsync(request);
+                var response = await _httpClient.SendAsync(request);
                 return await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
@@ -98,29 +75,13 @@ namespace CryptoInfo.Model
                 var FirstRequest = CreateRequest($"{_baseUrl}/assets/{FirstId}");
                 var SecondRequest = CreateRequest($"{_baseUrl}/assets/{SecondId}");
 
-                var FirstResponse = await _client.SendAsync(FirstRequest);
-                var SecondResponse = await _client.SendAsync(SecondRequest);
+                var FirstResponse = await _httpClient.SendAsync(FirstRequest);
+                var SecondResponse = await _httpClient.SendAsync(SecondRequest);
 
                 result.Add(FirstResponse.Content.ReadAsStringAsync());
                 result.Add(SecondResponse.Content.ReadAsStringAsync());
 
                 return result;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-                return null;
-            }
-        }
-
-        public async Task<string> Getcandles(string exchangeId, string interval, string coinId)
-        {
-            try
-            {
-                var request = CreateRequest($"https://api.coincap.io/v2/candles?exchange=poloniex&interval=h8&baseId=ethereum&quoteId=bitcoin");
-                var response = await _client.SendAsync(request);
-                var s = await response.Content.ReadAsStringAsync(); 
-                return await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
             {

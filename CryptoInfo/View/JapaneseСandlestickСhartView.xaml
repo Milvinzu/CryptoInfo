@@ -23,25 +23,36 @@
                     Orientation="Horizontal">
             <ComboBox Width="100"
                       Margin="0 0 15 0"
+                      FontSize="15"
                       ItemsSource="{Binding currencies}"
                       DisplayMemberPath="Name"
                       Name="CurrencyComboBox"
-                      Style="{StaticResource ComboBoxFlatStyle}"/>
+                      Style="{StaticResource ComboBoxFlatStyle}"
+                      SelectedIndex="0"/>
+            
             <ComboBox Width="100"
                       Margin="0 0 15 0"
+                      FontSize="15"
                       ItemsSource="{Binding intervals}"
                       DisplayMemberPath="Period"
                       Name="IntervalComboBox"
-                      Style="{StaticResource ComboBoxFlatStyle}"/>
+                      Style="{StaticResource ComboBoxFlatStyle}"
+                      SelectedIndex="5"/>
+            
             <ComboBox Width="100"
                       Margin="0 0 15 0"
+                      FontSize="15"
                       ItemsSource="{Binding timePeroid}"
                       DisplayMemberPath="Period"
                       Name="TimeComboBox"
-                      Style="{StaticResource ComboBoxFlatStyle}"/>
-            <Button Width="100"
+                      Style="{StaticResource ComboBoxFlatStyle}"
+                      SelectedIndex="2"/>
+            
+            <Button Width="Auto"
+                    MinWidth="100"
+                    FontSize="15"
                     Margin="0 0 15 0"
-                    Content="Build"
+                    Content="{DynamicResource ResourceKey=Btn_Build}"
                     Click="Set_Candle_Setting"
                     Style="{StaticResource FlatButtonStyle}"/>
         </StackPanel>

@@ -11,7 +11,7 @@
     <!-- DataGrid -->
     <SolidColorBrush x:Key="DataGridBackgroundColor" Color="#dadce0"/>
     <SolidColorBrush x:Key="ScrollBackgroundColor" Color="#F3F5F9"/>
-    <SolidColorBrush x:Key="DataGridHeaderColor" Color="#cccccc"/>
+    <SolidColorBrush x:Key="DataGridHeaderColor" Color="#b7b7b7"/>
     
     <!-- Primary Colors -->
     <SolidColorBrush x:Key="PrimaryBlueColor" Color="#496FFF"/>

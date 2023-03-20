@@ -13,7 +13,7 @@
     </UserControl.DataContext>
 
     <Grid>
-        <ItemsControl ItemsSource="{Binding Coins}"
+        <ItemsControl ItemsSource="{Binding AvailableCoins}"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">
             <ItemsControl.ItemTemplate>
@@ -25,12 +25,16 @@
                         <StackPanel Orientation="Horizontal"
                                     Style="{StaticResource ColorfulStackPanel}">
                             <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text="  &#x200A;&#x200A;Price:&#x200A;&#x200A;"
+                            <TextBlock Text="&#x200A;&#x200A;&#x200A;&#x200A;"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=TextBlock_Price}"
                                        FontFamily="Arial Black"/>
+                            <TextBlock Text="&#x200A;&#x200A;&#x200A;&#x200A;"/>
                             <TextBlock Text="{Binding PriceUsd}"/>
                             <TextBlock Text="&#x200A;&#x200A;USD"/>
-                            <TextBlock Text="&#x200A;&#x200A;Change percent "
+                            <TextBlock Text="&#x200A;&#x200A;&#x200A;&#x200A;"/>
+                            <TextBlock Text="{DynamicResource ResourceKey=TextBlock_Change_percent}"
                                        FontFamily="Arial Black"/>
+                            <TextBlock Text="&#x200A;&#x200A;&#x200A;&#x200A;"/>
                             <TextBlock Text="{Binding ChangePercent24Hr}"/>
                             <TextBlock Text="&#x200A;&#x200A; %"/>
                         </StackPanel>

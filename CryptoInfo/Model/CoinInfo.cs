@@ -10,11 +10,11 @@ namespace CryptoInfo.Model
 {
     class CoinInfo
     {
-        private readonly CoinCapAPI _coinCapAPI;
+        private readonly CoinCapApi _coinCapAPI;
 
         public CoinInfo()
         {
-            _coinCapAPI = new CoinCapAPI();
+            _coinCapAPI = new CoinCapApi();
         }
         public async Task<List<Currency>> GetTopTen()
         {
@@ -26,7 +26,7 @@ namespace CryptoInfo.Model
 
             foreach (var currency in currencies.data)
             {
-                var coin = new Currency
+                Currency coin = new Currency
                 {
                     Name = currency.name,
                     PriceUsd = decimal.Round((decimal?)currency.priceUsd ?? 0, 3, MidpointRounding.ToEven),
@@ -59,17 +59,18 @@ namespace CryptoInfo.Model
                 {
                     tasks.Add(Task.Run(async () =>
                     {
+                        decimal priceUsd = decimal.Round((decimal?)market?.priceUsd ?? 0, 3, MidpointRounding.ToEven);
                         currencyMarkets.Add(new Market
                         {
                             ExchangeId = market.exchangeId,
-                            PriceUsd = decimal.Round((decimal?)market?.priceUsd ?? 0, 3, MidpointRounding.ToEven)
+                            PriceUsd = priceUsd
                         });
                     }));
                 }
 
                 await Task.WhenAll(tasks);
 
-                var coin = new Currency
+                Currency coin = new Currency
                 {
                     Name = currency.name,
                     Symbol = currency.symbol,
@@ -123,14 +124,14 @@ namespace CryptoInfo.Model
                     }
                     await Task.WhenAll(tasks);
 
-                    var coin = new Currency
+                    Currency coin = new Currency
                     {
                         Id = coinId,
                         Name = currencies.name,
                         Symbol = currencies.symbol,
-                        PriceUsd = (decimal?)currencies.priceUsd ?? 0,
-                        VolumeUsd24Hr = RoundBigMoney((decimal?)currency.volumeUsd24Hr ?? 0),
-                        ChangePercent24Hr = (decimal?)currencies?.changePercent24Hr ?? 0,
+                        PriceUsd = decimal.Round((decimal?)currencies.priceUsd ?? 0, 3, MidpointRounding.ToEven),
+                        VolumeUsd24Hr = RoundBigMoney((decimal?)currencies.volumeUsd24Hr ?? 0),
+                        ChangePercent24Hr = decimal.Round((decimal?)currencies?.changePercent24Hr ?? 0, 2, MidpointRounding.ToEven),
                         Market = string.Join(", ", currencyMarkets
                             .Where(m => m != null)
                             .Select(m => $"{m.ExchangeId} - {m.PriceUsd} USD")
@@ -155,15 +156,12 @@ namespace CryptoInfo.Model
 
             foreach (var currencies in currency.data)
             {
-
-                
-                    var coin = new Currency
-                    {
-                        Id = currencies.id,
-                        Name = currencies.name
-                    };
-                    coinList.Add(coin);
-                
+                Currency coin = new Currency
+                {
+                    Id = currencies.id,
+                    Name = currencies.name
+                };
+                coinList.Add(coin);
             }
             return coinList;
         }

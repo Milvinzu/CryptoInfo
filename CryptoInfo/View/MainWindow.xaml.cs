@@ -14,6 +14,7 @@ using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CryptoInfo.Model;
+using CryptoInfo.Resources;
 using CryptoInfo.Theme;
 using CryptoInfo.ViewModel;
 using Microsoft.Windows.Themes;
@@ -32,7 +33,7 @@ namespace CryptoInfo
             InitializeComponent();
         }  
 
-        public void Theme_Switch(object sender,RoutedEventArgs e)
+        private void Theme_Switch(object sender,RoutedEventArgs e)
         {
             if(Themes.IsChecked == false)
             {
@@ -41,6 +42,23 @@ namespace CryptoInfo
             else
             {
                 ThemesController.SetTheme(ThemesController.ThemeTypes.Dark);
+            }
+        }
+
+        private void Lang_Switch(object sender, SelectionChangedEventArgs e)
+        {
+            string selected = Lang.SelectedItem.ToString().Substring(38);
+            if (selected == "en-US")
+            {
+                LangController.SetLang(LangController.LangTypes.en_US);
+            }
+            else if(selected == "ua-UA")
+            {
+                LangController.SetLang(LangController.LangTypes.ua_UA);
+            }
+            else if(selected == "pl-PL")
+            {
+                LangController.SetLang(LangController.LangTypes.pl_PL);
             }
         }
 

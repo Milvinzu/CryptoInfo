@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 
 namespace CryptoInfo.Model
 {
@@ -15,19 +10,22 @@ namespace CryptoInfo.Model
         {
             CoinApi coinApi = new CoinApi();
 
-            var CandleJson = await coinApi.GetCryptocurrenciesList($"BITSTAMP_SPOT_{coinId}_USD", interval, limit);
+            var CandleJson = await coinApi.GetCandleList($"BITSTAMP_SPOT_{coinId}_USD", interval, limit);
+            if (string.IsNullOrEmpty(CandleJson)) return null;
             dynamic Candles = JsonConvert.DeserializeObject<dynamic>(CandleJson);
 
             FancyCandles.TimeFrame timeFrame = FancyCandles.TimeFrame.H1;
-            CandlesSource candles = new CandlesSource(timeFrame);
+            CandlesSource candleList = new CandlesSource(timeFrame);
+
             int iMax = 0;
             foreach (var candle in Candles) 
             {
                 iMax++;
             }
+
             for (int i = iMax - 1; i >= 0; i--)
             {
-                candles.Add(new Candle(
+                candleList.Add(new Candle(
                     (DateTime)Candles[i].time_period_start,
                     (double)Candles[i].price_open,
                     (double)Candles[i].price_high,
@@ -37,7 +35,7 @@ namespace CryptoInfo.Model
                     ));
             }      
 
-            return candles;
+            return candleList;
         }
     }
 }

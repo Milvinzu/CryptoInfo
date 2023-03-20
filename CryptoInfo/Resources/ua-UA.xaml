@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mscorlib="clr-namespace:System;assembly=mscorlib"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <system:String x:Key="Language_Code">ua-UA</system:String>
+    <system:String x:Key="Btn_Top_Crypto">Топ криптовалют</system:String>
+    <system:String x:Key="Btn_More_Info">Детальна інформація</system:String>
+    <system:String x:Key="Btn_Convert_Currency">Конвертація валюи</system:String>
+    <system:String x:Key="Btn_Candles">Свічковий графік</system:String>
+    <system:String x:Key="Btn_Close">Зачинити</system:String>
+    <system:String x:Key="Btn_Convert">Конвертувати</system:String>
+    <system:String x:Key="Btn_Build">Побудувати</system:String>
+    <system:String x:Key="TextBlock_Price">Ціна:</system:String>
+    <system:String x:Key="TextBlock_Change_percent">Процентна зміна</system:String>
+    <system:String x:Key="HeaderColumn_Name">Ім'я</system:String>
+    <system:String x:Key="HeaderColumn_Symbol">Символ</system:String>
+    <system:String x:Key="HeaderColumn_Price">Ціна(USD)</system:String>
+    <system:String x:Key="HeaderColumn_24_Hour_Volume">Об'єм за 24 години (USD)</system:String>
+    <system:String x:Key="HeaderColumn_24_Hour_Change">Зміна за 24 години (%)</system:String>
+    <system:String x:Key="HeaderColumn_Markets_and_Price">Ринки і ціни</system:String>
+    <system:String x:Key="Label_Currency_to_convert">Валюта для конвертації:</system:String>
+    <system:String x:Key="Label_Convertible_currency">Конвертувати в:</system:String>
+</ResourceDictionary>

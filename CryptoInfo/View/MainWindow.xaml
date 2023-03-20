@@ -24,39 +24,52 @@
 
         <StackPanel Grid.Column="0"
                     Background="{DynamicResource SecundaryBackgroundColor}">
-            <RadioButton Content="Top Crypto"
+            <RadioButton Content="{DynamicResource ResourceKey=Btn_Top_Crypto}"
                          Height="50px"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          IsChecked="True"
                          Command="{Binding TopCryptoViewCommand}"
                          Name="HomeRadioBtn"/>
-            <RadioButton Content="More Info"
+            
+            <RadioButton Content="{DynamicResource ResourceKey=Btn_More_Info}"
                          Height="50px"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Command="{Binding SearchViewCommand}"/>
-            <RadioButton Content="Convert Currency"
+            
+            <RadioButton Content="{DynamicResource ResourceKey=Btn_Convert_Currency}"
                          Height="50px"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Command="{Binding ConvertCurrencyViewCommand}"/>
-            <RadioButton Content="Candles"
+            
+            <RadioButton Content="{DynamicResource ResourceKey=Btn_Candles}"
                          Height="50px"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Command="{Binding JapaneseСandlestickСhartViewCommand}"/>
-            <RadioButton Content="Close"
+            
+            <RadioButton Content="{DynamicResource ResourceKey=Btn_Close}"
                          Height="50px"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Click="Close_App"/>
+            
+            <ComboBox Name="Lang"
+                      SelectionChanged="Lang_Switch"
+                      Style="{DynamicResource ComboBoxFlatStyle}"
+                      SelectedIndex="0">
+                <ComboBoxItem>en-US</ComboBoxItem>
+                <ComboBoxItem>ua-UA</ComboBoxItem>
+                <ComboBoxItem>pl-PL</ComboBoxItem>
+            </ComboBox>
             <Border Background="{DynamicResource SecundaryBackgroundColor}"
                     Height="60" Width="100"
                     CornerRadius="5"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center"
-                    Margin="0 350 0 0">
+                    Margin="0 300 0 0">
                 <ToggleButton x:Name="Themes"
                               IsChecked="False"
                               Click="Theme_Switch"

@@ -42,16 +42,17 @@
                     <Setter Property="ScrollViewer.BorderBrush" Value="{DynamicResource ScrollBackgroundColor}"/>
                 </Style>
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Padding" Value="10,5"/>
                     <Setter Property="Background" Value="{DynamicResource DataGridHeaderColor}"/>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header=" Symbol    " Binding="{Binding Symbol}"/>
-                <DataGridTextColumn Header="Price (USD)    " Binding="{Binding PriceUsd}"/>
-                <DataGridTextColumn Header="24 Hour Volume (USD)    " Binding="{Binding VolumeUsd24Hr}"/>
-                <DataGridTextColumn Header="24 Hour Change (%)     " Binding="{Binding ChangePercent24Hr}"/>
-                <DataGridTextColumn Header="Markets and Price" Binding="{Binding Market}"/>
+                <DataGridTextColumn Header="{DynamicResource ResourceKey=HeaderColumn_Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{DynamicResource ResourceKey=HeaderColumn_Symbol}" Binding="{Binding Symbol}"/>
+                <DataGridTextColumn Header="{DynamicResource ResourceKey=HeaderColumn_Price}" Binding="{Binding PriceUsd}"/>
+                <DataGridTextColumn Header="{DynamicResource ResourceKey=HeaderColumn_24_Hour_Volume}" Binding="{Binding VolumeUsd24Hr}"/>
+                <DataGridTextColumn Header="{DynamicResource ResourceKey=HeaderColumn_24_Hour_Change}" Binding="{Binding ChangePercent24Hr}"/>
+                <DataGridTextColumn Header="{DynamicResource ResourceKey=HeaderColumn_Markets_and_Price}" Binding="{Binding Market}"/>
             </DataGrid.Columns>
         </DataGrid>
 

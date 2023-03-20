@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CryptoInfo.View
 {
@@ -28,9 +29,10 @@ namespace CryptoInfo.View
 
         private void ComboBox_KeyDown(object sender, KeyEventArgs e)
         {
+            var ComboBox = (ComboBox)sender;
+            ComboBox.IsDropDownOpen = false;
             if (e.Key == Key.Enter)
             {
-                var ComboBox = (ComboBox)sender;
                 var viewModel = (ConvertCurrencyViewModel)DataContext;
                 viewModel.SearchListForComboBox(ComboBox);
                 ComboBox.IsDropDownOpen = true;
@@ -42,13 +44,14 @@ namespace CryptoInfo.View
             var textBox = CountTextBox;
             var FirstComboBox = FirstCombo;
             var SecondComboBox = SecondCombo;
-            if(string.IsNullOrEmpty(textBox.Text))
-            {
-                textBox.Text = "1";
-                CountTextBox.Text = "1";
-            }
             dynamic items = FirstComboBox.SelectedItem;
             dynamic it = SecondComboBox.SelectedItem;
+            if (string.IsNullOrEmpty(textBox.Text) || items == null || it == null)
+            {
+                Error.Content = "Fill All Text Fields";
+                return;
+            }
+            Error.Content = "";
             var viewModel = (ConvertCurrencyViewModel)DataContext;
             viewModel.SetCurrencies(items.Id, it.Id, Convert.ToDecimal(textBox.Text));
         }

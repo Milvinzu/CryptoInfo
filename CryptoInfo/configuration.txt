@@ -1,2 +1,0 @@
-APIKey: 874be4d0-2fad-4bc8-8aa9-64bdb34ff012
-BaseUrl: https://api.coincap.io/v2

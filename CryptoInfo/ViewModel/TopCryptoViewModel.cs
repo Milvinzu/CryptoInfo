@@ -10,7 +10,7 @@ namespace CryptoInfo.ViewModel
 {
     class TopCryptoViewModel : ObservableObject
     {
-        private ObservableCollection<Model.Currency> Coinsa;
+        private ObservableCollection<Model.Currency> Coins;
 
         public TopCryptoViewModel()
         {
@@ -20,16 +20,16 @@ namespace CryptoInfo.ViewModel
         private async void LoadCoins()
         {
             CoinInfo coinInfo = new CoinInfo();
-            List<Currency> coins = await coinInfo.GetTopTen();
-            Coins = new ObservableCollection<Currency>(coins);
+            List<Currency> CoinsList = await coinInfo.GetTopTen();
+            AvailableCoins = new ObservableCollection<Currency>(CoinsList);
         }
 
-        public ObservableCollection<Model.Currency> Coins
+        public ObservableCollection<Model.Currency> AvailableCoins
         {
-            get { return Coinsa; }
+            get { return Coins; }
             set
             {
-                Coinsa = value;
+                Coins = value;
                 OnPropertyChanged();
             }
         }

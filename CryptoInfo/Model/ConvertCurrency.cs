@@ -9,8 +9,8 @@ namespace CryptoInfo.Model
 {
     class ConvertCurrency
     {
-        public string FirstCurrency { get; }
-        public string SecondCurrency { get; }
+        private string FirstCurrency { get; }
+        private string SecondCurrency { get; }
 
         public ConvertCurrency(string firstCurrency, string secondCurrency)
         {
@@ -24,7 +24,7 @@ namespace CryptoInfo.Model
             decimal result = 0;
             decimal FirstRateUsd = 0;
             decimal SecondRateUsd = 0;
-            CoinCapAPI coinCapAPI = new CoinCapAPI();
+            CoinCapApi coinCapAPI = new CoinCapApi();
 
             List<Task<string>> RateList = await coinCapAPI.GetReteForConvert(FirstCurrency, SecondCurrency);
 
@@ -33,8 +33,11 @@ namespace CryptoInfo.Model
 
             if (FirstRateJson.data == null || SecondRateJson.data == null) return -1;
 
-            result = (CountCurrency * (decimal)FirstRateJson.data.priceUsd) / (decimal)SecondRateJson.data.priceUsd;
+            FirstRateUsd = (decimal)FirstRateJson.data.priceUsd;
+            SecondRateUsd = (decimal)SecondRateJson.data.priceUsd;
 
+            result = (CountCurrency * FirstRateUsd) / SecondRateUsd;
+            result = decimal.Round(result, 2, MidpointRounding.ToEven);
             return result;
         }
     }

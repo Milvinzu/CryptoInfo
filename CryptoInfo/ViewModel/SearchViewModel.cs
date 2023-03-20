@@ -35,7 +35,7 @@ namespace CryptoInfo.ViewModel
         {
             CoinInfo coinInfo = new CoinInfo();
             List<Currency> coin = await coinInfo.SearchCoin(_textValue);
-            if(coin != null )
+            if(coin != null && coin.Count > 0 )
             {
                 Coins = new ObservableCollection<Currency>(coin);
             }
