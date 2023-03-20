@@ -25,24 +25,36 @@
                       Margin="0 0 15 0"
                       ItemsSource="{Binding currencies}"
                       DisplayMemberPath="Name"
-                      Name="CurrencyComboBox"/>
+                      Name="CurrencyComboBox"
+                      Style="{StaticResource ComboBoxFlatStyle}"/>
             <ComboBox Width="100"
                       Margin="0 0 15 0"
                       ItemsSource="{Binding intervals}"
                       DisplayMemberPath="Period"
-                      Name="IntervalComboBox"/>
+                      Name="IntervalComboBox"
+                      Style="{StaticResource ComboBoxFlatStyle}"/>
             <ComboBox Width="100"
                       Margin="0 0 15 0"
                       ItemsSource="{Binding timePeroid}"
                       DisplayMemberPath="Period"
-                      Name="TimeComboBox"/>
+                      Name="TimeComboBox"
+                      Style="{StaticResource ComboBoxFlatStyle}"/>
             <Button Width="100"
                     Margin="0 0 15 0"
                     Content="Build"
-                    Click="Set_Candle_Setting"/>
+                    Click="Set_Candle_Setting"
+                    Style="{StaticResource FlatButtonStyle}"/>
         </StackPanel>
 
         <fc:CandleChart CandlesSource="{Binding Path=candlesss}"
-                        Grid.Row="1"/>
+                        Grid.Row="1"
+                        ChartAreaBackground="{DynamicResource CandleChartColor}"
+                        AxisTickColor="{DynamicResource PrimaryTextColor}"
+                        ScrollBarBackground="{DynamicResource PrimaryBackgroundColor}"
+                        ChartAreaBorderColor="{DynamicResource CandleChartBorderColor}"
+                        IsCrossPriceLabelVisible="False"
+                        CurrentPriceLabelBackground="{DynamicResource SecundaryBackgroundColor}"
+                        CurrentPriceLabelForeground="{DynamicResource PrimaryTextColor}"
+                        CrossLinesBrush="{DynamicResource CandleChartBorderColor}"/>
     </Grid>
 </UserControl>

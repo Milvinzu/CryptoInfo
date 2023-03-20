@@ -9,23 +9,24 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Grid VerticalAlignment="Stretch"
                               HorizontalAlignment="Stretch"
-                              Margin="15px 0 0 0"
                               Background="{TemplateBinding Background}">
 
                             <TextBlock VerticalAlignment="Center"
-                                       Text="{TemplateBinding Property=Content}"/>
+                                       Text="{TemplateBinding Property=Content}"
+                                       Margin="15px 0 15px 0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Background" Value="{DynamicResource PrimaryButtonColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonTextColor}"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style.Setters>
 
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#22202f"/>
+                <Setter Property="Background" Value="{DynamicResource ActiveButtonColor}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

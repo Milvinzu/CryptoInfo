@@ -10,28 +10,47 @@
     <UserControl.DataContext>
         <viewModel:SearchViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-            <TextBox
-                 Text="{Binding TextValue, Mode=TwoWay}"
-                 KeyDown="TextBox_KeyDown"
+        <TextBox Text="{Binding TextValue, Mode=TwoWay}"
+                 Width="200"
                  HorizontalAlignment="Left"
-                 Width="200"/>
+                 KeyDown="TextBox_KeyDown"
+                 Margin="5"
+                 Background="{DynamicResource TextBoxBackgroundColor}"
+                 Foreground="{DynamicResource PrimaryTextColor}">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
 
-            <DataGrid Grid.Row="1"
+        <DataGrid Grid.Row="1"
                   ItemsSource="{Binding Coins}"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  Style="{StaticResource DataGridStyle}"
+                  HeadersVisibility="Column">
+            <DataGrid.Resources>
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Background" Value="{DynamicResource ScrollBackgroundColor}" />
+                    <Setter Property="ScrollViewer.BorderBrush" Value="{DynamicResource ScrollBackgroundColor}"/>
+                </Style>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{DynamicResource DataGridHeaderColor}"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Symbol" Binding="{Binding Symbol}"/>
-                <DataGridTextColumn Header="Price (USD)" Binding="{Binding PriceUsd}"/>
-                <DataGridTextColumn Header="24 Hour Volume (USD)" Binding="{Binding VolumeUsd24Hr}"/>
-                <DataGridTextColumn Header="24 Hour Change (%)" Binding="{Binding ChangePercent24Hr}"/>
+                <DataGridTextColumn Header=" Symbol    " Binding="{Binding Symbol}"/>
+                <DataGridTextColumn Header="Price (USD)    " Binding="{Binding PriceUsd}"/>
+                <DataGridTextColumn Header="24 Hour Volume (USD)    " Binding="{Binding VolumeUsd24Hr}"/>
+                <DataGridTextColumn Header="24 Hour Change (%)     " Binding="{Binding ChangePercent24Hr}"/>
                 <DataGridTextColumn Header="Markets and Price" Binding="{Binding Market}"/>
             </DataGrid.Columns>
         </DataGrid>

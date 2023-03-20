@@ -42,6 +42,11 @@ namespace CryptoInfo.View
             var textBox = CountTextBox;
             var FirstComboBox = FirstCombo;
             var SecondComboBox = SecondCombo;
+            if(string.IsNullOrEmpty(textBox.Text))
+            {
+                textBox.Text = "1";
+                CountTextBox.Text = "1";
+            }
             dynamic items = FirstComboBox.SelectedItem;
             dynamic it = SecondComboBox.SelectedItem;
             var viewModel = (ConvertCurrencyViewModel)DataContext;

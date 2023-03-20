@@ -12,7 +12,7 @@ namespace CryptoInfo.Model
         public string Name { get; set; }
         public string Symbol { get; set; }
         public decimal PriceUsd { get; set; }
-        public decimal VolumeUsd24Hr { get; set; }
+        public string VolumeUsd24Hr { get; set; }
         public decimal ChangePercent24Hr { get; set; }
         public string Market { get; set; }
     }

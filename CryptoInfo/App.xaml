@@ -9,7 +9,14 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButton.xaml"/>
+                <ResourceDictionary Source="Theme/LightTheme.xaml"/>
+                
+                <ResourceDictionary Source="Style/MenuButton.xaml"/>
+                <ResourceDictionary Source="Style/TextBlockTopCoin.xaml"/>
+                <ResourceDictionary Source="Style/DataGrid.xaml"/>
+                <ResourceDictionary Source="Style/ComboBox.xaml"/>
+                <ResourceDictionary Source="Style/Button.xaml"/>
+                <ResourceDictionary Source="Style/ToggleButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:TopCryptoViewModel}">

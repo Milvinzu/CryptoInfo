@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:CryptoInfo"
         xmlns:viewModel="clr-namespace:CryptoInfo.ViewModel"
         mc:Ignorable="d"
-        Height="450" Width="700" Background="#FFEAEBEC"
-        Title="CryptoInfo" WindowStartupLocation="CenterScreen">
+        Height="650" Width="900" Background="{DynamicResource PrimaryBackgroundColor}"
+        Title="CryptoInfo" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -20,7 +22,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0"
+                    Background="{DynamicResource SecundaryBackgroundColor}">
             <RadioButton Content="Top Crypto"
                          Height="50px"
                          FontSize="14"
@@ -43,6 +46,23 @@
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Command="{Binding JapaneseСandlestickСhartViewCommand}"/>
+            <RadioButton Content="Close"
+                         Height="50px"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Click="Close_App"/>
+            <Border Background="{DynamicResource SecundaryBackgroundColor}"
+                    Height="60" Width="100"
+                    CornerRadius="5"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Margin="0 350 0 0">
+                <ToggleButton x:Name="Themes"
+                              IsChecked="False"
+                              Click="Theme_Switch"
+                              Style="{DynamicResource ToggleButtonStyle}"/>
+
+            </Border>
         </StackPanel>
 
         <ContentControl Grid.Column="1"

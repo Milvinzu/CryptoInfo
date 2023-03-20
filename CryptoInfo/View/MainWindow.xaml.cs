@@ -14,6 +14,7 @@ using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CryptoInfo.Model;
+using CryptoInfo.Theme;
 using CryptoInfo.ViewModel;
 using Microsoft.Windows.Themes;
 using Newtonsoft.Json;
@@ -31,5 +32,21 @@ namespace CryptoInfo
             InitializeComponent();
         }  
 
+        public void Theme_Switch(object sender,RoutedEventArgs e)
+        {
+            if(Themes.IsChecked == false)
+            {
+                ThemesController.SetTheme(ThemesController.ThemeTypes.Light);
+            }
+            else
+            {
+                ThemesController.SetTheme(ThemesController.ThemeTypes.Dark);
+            }
+        }
+
+        public void Close_App(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -29,8 +29,8 @@ namespace CryptoInfo.Model
                 var coin = new Currency
                 {
                     Name = currency.name,
-                    PriceUsd = (decimal?)currency.priceUsd ?? 0,
-                    ChangePercent24Hr = (decimal?)currency?.changePercent24Hr ?? 0
+                    PriceUsd = decimal.Round((decimal?)currency.priceUsd ?? 0, 3, MidpointRounding.ToEven),
+                    ChangePercent24Hr = decimal.Round((decimal?)currency?.changePercent24Hr ?? 0, 2, MidpointRounding.ToEven)
                 };
 
                 coinList.Add(coin);
@@ -62,7 +62,7 @@ namespace CryptoInfo.Model
                         currencyMarkets.Add(new Market
                         {
                             ExchangeId = market.exchangeId,
-                            PriceUsd = (decimal?)market?.priceUsd ?? 0
+                            PriceUsd = decimal.Round((decimal?)market?.priceUsd ?? 0, 3, MidpointRounding.ToEven)
                         });
                     }));
                 }
@@ -73,9 +73,9 @@ namespace CryptoInfo.Model
                 {
                     Name = currency.name,
                     Symbol = currency.symbol,
-                    PriceUsd = (decimal?)currency.priceUsd ?? 0,
-                    VolumeUsd24Hr = (decimal?)currency.volumeUsd24Hr ?? 0,
-                    ChangePercent24Hr = (decimal?)currency?.changePercent24Hr ?? 0,
+                    PriceUsd = decimal.Round((decimal?)currency.priceUsd ?? 0, 3, MidpointRounding.ToEven),
+                    VolumeUsd24Hr = RoundBigMoney((decimal?)currency.volumeUsd24Hr ?? 0),
+                    ChangePercent24Hr = decimal.Round((decimal?)currency?.changePercent24Hr ?? 0, 2, MidpointRounding.ToEven),
                     Market = string.Join(", ", currencyMarkets
                         .Where(m => m != null)
                         .Select(m => $"{m.ExchangeId} - {m.PriceUsd} USD")
@@ -129,7 +129,7 @@ namespace CryptoInfo.Model
                         Name = currencies.name,
                         Symbol = currencies.symbol,
                         PriceUsd = (decimal?)currencies.priceUsd ?? 0,
-                        VolumeUsd24Hr = (decimal?)currencies.volumeUsd24Hr ?? 0,
+                        VolumeUsd24Hr = RoundBigMoney((decimal?)currency.volumeUsd24Hr ?? 0),
                         ChangePercent24Hr = (decimal?)currencies?.changePercent24Hr ?? 0,
                         Market = string.Join(", ", currencyMarkets
                             .Where(m => m != null)
@@ -166,6 +166,28 @@ namespace CryptoInfo.Model
                 
             }
             return coinList;
+        }
+
+
+        public string RoundBigMoney(decimal amount)
+        {
+            decimal roundedAmount = Math.Round(amount, 2); 
+            if (roundedAmount >= 1000000000)
+            {
+                return Math.Round(roundedAmount / 1000000000, 2) + "b"; 
+            }
+            else if (roundedAmount >= 1000000)
+            {
+                return Math.Round(roundedAmount / 1000000, 2) + "m"; 
+            }
+            else if (roundedAmount < 1000000)
+            {
+                return Math.Round(roundedAmount / 1000, 2) + "k";
+            }
+            else
+            {
+                return roundedAmount.ToString(); 
+            }
         }
 
     }

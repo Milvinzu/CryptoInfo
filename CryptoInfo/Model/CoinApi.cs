@@ -7,7 +7,8 @@ namespace CryptoInfo.Model
 {
     internal class CoinApi
     {
-        private string _apiKey = "B3885EC2-3573-428B-A683-507C87A40CE5";
+        
+        private string _apiKey = "99DD3637-2658-4508-8F5A-86B577C55BC4";
         private string _baseUrl = "https://rest.coinapi.io/v1";
 
         public async Task<string> GetCryptocurrenciesList(string symbolId, string periodId, int limit)

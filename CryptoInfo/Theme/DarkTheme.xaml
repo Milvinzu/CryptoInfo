@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Background Colors -->
+    <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#14181D"/>
+    <SolidColorBrush x:Key="SecundaryBackgroundColor" Color="#1C1C25"/>
+    
+    <!-- TextBox -->
+    <SolidColorBrush x:Key="TextBoxBackgroundColor" Color="#5a5d60"/>
+    
+    <!-- DataGrid -->
+    <SolidColorBrush x:Key="DataGridBackgroundColor" Color="#1e242c"/>
+    <SolidColorBrush x:Key="ScrollBackgroundColor" Color="#333d4a"/>
+    <SolidColorBrush x:Key="DataGridHeaderColor" Color="#181c23"/>
+
+    <!-- Primary Colors -->
+    <SolidColorBrush x:Key="PrimaryBlueColor" Color="#496FFF"/>
+    <SolidColorBrush x:Key="PrimaryGrayColor" Color="#64677A"/>
+    
+    <!-- Secundary Colors -->
+    <SolidColorBrush x:Key="SecundaryBlueColor" Color="#496FFF"/>
+    <SolidColorBrush x:Key="SecundaryGrayColor" Color="#CECECE"/>
+    
+    <!--  Tertiary Colors -->
+    <SolidColorBrush x:Key="TertiaryBlueColor" Color="#C2D1FC"/>
+    
+    <!-- CandleChart -->
+    <SolidColorBrush x:Key="CandleChartColor" Color="#1C1C25"/>
+    <SolidColorBrush x:Key="CandleChartBorderColor" Color="#CECECE"/>
+    
+    <!-- BorderBrush-->
+    <SolidColorBrush x:Key="BorderBrushColor" Color="#233DC7"/>
+    
+    <!-- Text Colors -->
+    <SolidColorBrush x:Key="PrimaryTextColor" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ProTextColor" Color="#FFFFFF"/>
+
+    <!-- TextBlock Colors-->
+    <SolidColorBrush x:Key="PrimaryTextBlockColor" Color="#2b2f33"/>
+
+    <!-- Button Colors -->
+    <SolidColorBrush x:Key="PrimaryButtonColor" Color="#32323a"/>
+    <SolidColorBrush x:Key="ActiveButtonColor" Color="#494950"/>
+    <SolidColorBrush x:Key="ButtonTextColor" Color="#FFFFFF"/>
+</ResourceDictionary>

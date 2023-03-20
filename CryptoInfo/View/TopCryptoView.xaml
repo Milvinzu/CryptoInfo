@@ -12,27 +12,32 @@
         <viewModel:TopCryptoViewModel/>
     </UserControl.DataContext>
 
-
     <Grid>
-
         <ItemsControl ItemsSource="{Binding Coins}"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch">
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="0 20 0 0"
-                                Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}"/>
-                        <TextBlock Text="&#x200A;&#x200A;" />
-                        <TextBlock Text="{Binding PriceUsd}"/>
-                        <TextBlock Text="&#x200A;&#x200A; USD" />
-                        <TextBlock Text="{Binding ChangePercent24Hr}"/>
-                        <TextBlock Text="&#x200A;&#x200A; %" />
-                    </StackPanel>
+                    <Border BorderBrush="{DynamicResource PrimaryTextBlockColor}"
+                        BorderThickness="10"
+                        CornerRadius="10"
+                        Margin="10">
+                        <StackPanel Orientation="Horizontal"
+                                    Style="{StaticResource ColorfulStackPanel}">
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="  &#x200A;&#x200A;Price:&#x200A;&#x200A;"
+                                       FontFamily="Arial Black"/>
+                            <TextBlock Text="{Binding PriceUsd}"/>
+                            <TextBlock Text="&#x200A;&#x200A;USD"/>
+                            <TextBlock Text="&#x200A;&#x200A;Change percent "
+                                       FontFamily="Arial Black"/>
+                            <TextBlock Text="{Binding ChangePercent24Hr}"/>
+                            <TextBlock Text="&#x200A;&#x200A; %"/>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
     </Grid>
 
 </UserControl>

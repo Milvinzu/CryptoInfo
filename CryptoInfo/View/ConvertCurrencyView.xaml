@@ -6,51 +6,95 @@
              xmlns:local="clr-namespace:CryptoInfo.View"
              xmlns:viewModel="clr-namespace:CryptoInfo.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.DataContext>
         <viewModel:ConvertCurrencyViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
-        <StackPanel  Orientation="Horizontal">
-            <ComboBox Width="150"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Left"
-                      Margin="30 20 0 0"
-                      IsEditable="True"
-                      Name="FirstCombo"
-                      KeyDown="ComboBox_KeyDown"
-                      ItemsSource="{Binding findNamesFirstComboBox}"
-                      DisplayMemberPath="Name"/>
-            <ComboBox Width="150"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Left"
-                      Margin="30 20 0 0"
-                      IsEditable="True"
-                      Name="SecondCombo"
-                      KeyDown="ComboBox_KeyDown"
-                      ItemsSource="{Binding findNamesSecondComboBox}"
-                      DisplayMemberPath="Name"/>
-            <TextBox Width="30"
-                     Height="22"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Left"
-                     Margin="30 20 0 0"
-                     Name="CountTextBox"/>
-            <Button Content="Convert"
-                    Width="150"
-                    Height="22"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Margin="30 20 0 0"
-                    Click="ConvertCoin"/>
-            <TextBlock Text="{Binding ConvertCurrency}"
-                       Width="150"
-                       Height="22"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Margin="30 20 0 0"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="1.25*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0"
+               Grid.Row="1"
+               Height="30"
+               Content="Currency to convert:"
+               FontFamily="Arial"
+               FontSize="15"
+               Margin="50 0 0 70"
+               Foreground="{DynamicResource PrimaryTextColor}"/>
+
+        <ComboBox Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="0 0 80 70"
+                  Width="150"
+                  Height="20"
+                  IsEditable="True"
+                  Name="FirstCombo"
+                  KeyDown="ComboBox_KeyDown"
+                  ItemsSource="{Binding findNamesFirstComboBox}"
+                  DisplayMemberPath="Name"
+                  Style="{StaticResource ComboBoxFlatStyle}"/>
+
+        <Label Grid.Column="0"
+               Grid.Row="1"
+               Height="30"
+               Content="Convertible currency:"
+               FontFamily="Arial"
+               FontSize="15"
+               Margin="50 50 0 0"
+               Foreground="{DynamicResource PrimaryTextColor}"/>
+
+        <ComboBox Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="0 50 80 0"
+                  Width="150"
+                  Height="20"
+                  IsEditable="True"
+                  Name="SecondCombo"
+                  KeyDown="ComboBox_KeyDown"
+                  ItemsSource="{Binding findNamesSecondComboBox}"
+                  DisplayMemberPath="Name"
+                  Style="{StaticResource ComboBoxFlatStyle}"
+                  />
+
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Width="73"
+                 Margin="200 0 0 70"
+                 Height="20"
+                 Name="CountTextBox"
+                 Background="{DynamicResource TextBoxBackgroundColor}"
+                 Foreground="{DynamicResource PrimaryTextColor}">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+
+        <Button Grid.Column="1"
+                Grid.Row="1"
+                Content="Convert"
+                Width="225"
+                Height="30"
+                VerticalAlignment="Bottom"
+                Click="ConvertCoin"
+                Style="{StaticResource FlatButtonStyle}"/>
+
+        <TextBlock Grid.Column="1"
+                   Grid.Row="1"
+                   Margin="240,127,21,83"
+                   Text="{Binding ConvertCurrency}"
+                   Height="20"
+                   Foreground="{DynamicResource PrimaryTextColor}"/>
     </Grid>
-    
 </UserControl>
